@@ -18,7 +18,6 @@ router.post("/", async (req, res, next) => {
             title: req.body.title,
             contents: req.body.contents,
         };
-
         const [id] = await db("messages").insert(payload);
         const message = await db("messages").where("id", id).first();
         res.json(message);
@@ -35,3 +34,5 @@ router.delete("/:id", async (req, res, next) => {
         next(err);
     }
 });
+
+module.exports = router;
